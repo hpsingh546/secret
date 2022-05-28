@@ -1,0 +1,54 @@
+instruction to deploy nodeJs app on heroku
+https://www.youtube.com/watch?v=r2S89Hm1Uq0&ab_channel=Raddy
+or dr angela chu video 
+using npm install we can install all the dependencies present in package.json
+
+step1:
+change the PORT because it is actually use the environment port of heroku
+and not set default one like i have
+let port = process.env.PORT;
+if (port == null || port == "") {
+  port = 3000;
+}
+step 2:
+create a Procfile
+and this file will basically
+tell
+heroku which file to run justlike we have in package.json we have start app.js file which is running when we start our server so we want to tell heraku which file to run exactly the same way 
+web : node app.js
+
+step 3:
+create an application on heroku dashboard now at the deployement you will see deployement step
+
+step 4:
+Make sure you have heroku cli installed
+
+step 5:
+heroku login
+
+step 6:
+create a new GIT repository
+initialize git repo
+git init
+heroku git: remote -a appName
+ 
+step7:
+deploy your application
+commit your code to repo and deploy it to heroku using git
+git  add .
+git commit -m "message"
+git push heroku master
+now it will give us an url or we simply go to dashboard and open app
+
+Error faced during process
+Issue
+You are opening your application and an "Application Error" message is displayed.
+
+Resolution
+
+To track this kind of issue down you should look at your logs:
+
+heroku logs --tail  in cmd at project folder
+In most cases, you will be able to see the cause of the error there. 
+LIKE I FACES TypeError: OAuth2Strategy requires a clientID option
+RESOLUTION I ALSO UPLOAD .ENV FILE BECAUSE IT CANT FIND CLIENT AND ANOTHER ENVIRONMENT VARIABLE PRESENT IN THAT FILE
